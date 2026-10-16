@@ -1,16 +1,16 @@
-package qa.ap.rest.model;
+package qa.ap.rest.model.comments;
 
 import java.util.List;
 
-public class ProductsResponse {
+public class CommentsResponse {
 
-    private List<Product> products;
+    private List<Comment> comments;
     private int total;
     private int skip;
     private int limit;
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public int getTotal() {

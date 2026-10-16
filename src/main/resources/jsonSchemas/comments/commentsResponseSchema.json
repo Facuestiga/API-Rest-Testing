@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Comments collection response",
+  "type": "object",
+  "required": ["comments", "total", "skip", "limit"],
+  "properties": {
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "body", "postId", "likes", "user"],
+        "properties": {
+          "id": {"type": "integer", "minimum": 1},
+          "body": {"type": "string", "minLength": 1},
+          "postId": {"type": "integer", "minimum": 1},
+          "likes": {"type": "integer", "minimum": 0},
+          "user": {
+            "type": "object",
+            "required": ["id", "username", "fullName"],
+            "properties": {
+              "id": {"type": "integer", "minimum": 1},
+              "username": {"type": "string", "minLength": 1},
+              "fullName": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "total": {"type": "integer", "minimum": 0},
+    "skip": {"type": "integer", "minimum": 0},
+    "limit": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": false
+}

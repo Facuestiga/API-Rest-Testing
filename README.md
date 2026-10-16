@@ -1,7 +1,8 @@
 # DummyJSON API Tests
 
 Base de automatización de API para `https://dummyjson.com`, construida con Java 11, Maven,
-JUnit 5, REST Assured y Allure.
+JUnit 5, REST Assured, JSON Schema Validator y Allure. Incluye 10 escenarios para `/products`,
+10 para `/comments` y 10 para `/users`, con casos positivos y negativos.
 
 La capa común utiliza SLF4J para registrar en consola el método y la URL de cada request,
 además del código de estado, status line y body completo de cada response.
@@ -44,9 +45,10 @@ mvn clean verify
 
 ## Estructura
 
-- `src/main/java/.../client`: encapsula las operaciones HTTP de `/products`.
+- `src/main/java/.../client`: encapsula las operaciones HTTP de `/products`, `/comments` y `/users`.
 - `src/main/java/.../config`: centraliza URL, especificación REST Assured y filtros.
 - `src/main/java/.../model`: representa los contratos de respuesta usados por las pruebas.
 - `src/main/java/.../base`: contiene la configuración base reutilizable.
 - `src/main/java/.../logging`: centraliza el logging de requests y responses.
-- `src/test/java`: contiene únicamente los 10 escenarios funcionales.
+- `src/main/resources/jsonSchemas`: contiene los contratos JSON de productos, comentarios, usuarios y errores.
+- `src/test/java`: contiene únicamente los 30 escenarios funcionales.

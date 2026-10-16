@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Created comment response",
+  "type": "object",
+  "required": ["id", "body", "postId", "user"],
+  "properties": {
+    "id": {"type": "integer", "minimum": 1},
+    "body": {"type": "string", "minLength": 1},
+    "postId": {"type": "integer", "minimum": 1},
+    "user": {
+      "type": "object",
+      "required": ["id", "username", "fullName"],
+      "properties": {
+        "id": {"type": "integer", "minimum": 1},
+        "username": {"type": "string", "minLength": 1},
+        "fullName": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

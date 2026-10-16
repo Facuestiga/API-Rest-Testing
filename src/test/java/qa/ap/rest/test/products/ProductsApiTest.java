@@ -1,4 +1,4 @@
-package qa.ap.rest.test;
+package qa.ap.rest.test.products;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -10,13 +10,14 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import qa.ap.rest.base.BaseApiTest;
-import qa.ap.rest.model.Product;
-import qa.ap.rest.model.ProductsResponse;
+import qa.ap.rest.model.products.Product;
+import qa.ap.rest.model.products.ProductsResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -35,7 +36,10 @@ class ProductsApiTest extends BaseApiTest {
     @Description("Validates status, pagination metadata and the basic product contract.")
     void shouldReturnDefaultProductPage() {
         Response response = productsClient.getAll();
-        ProductsResponse body = response.then().statusCode(200).extract().as(ProductsResponse.class);
+        ProductsResponse body = response.then()
+                .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("jsonSchemas/products/productsResponseSchema.json"))
+                .extract().as(ProductsResponse.class);
 
         assertAll(
                 () -> assertEquals(30, body.getProducts().size()),
@@ -52,7 +56,10 @@ class ProductsApiTest extends BaseApiTest {
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("2. Returns an existing product by ID")
     void shouldReturnExistingProductById() {
-        Product product = productsClient.getById(1).then().statusCode(200).extract().as(Product.class);
+        Product product = productsClient.getById(1).then()
+                .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("jsonSchemas/products/productResponseSchema.json"))
+                .extract().as(Product.class);
 
         assertAll(
                 () -> assertEquals(1, product.getId()),

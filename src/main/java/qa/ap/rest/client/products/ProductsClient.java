@@ -1,4 +1,4 @@
-package qa.ap.rest.client;
+package qa.ap.rest.client.products;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

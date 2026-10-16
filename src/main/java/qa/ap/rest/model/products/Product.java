@@ -1,4 +1,4 @@
-package qa.ap.rest.model;
+package qa.ap.rest.model.products;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

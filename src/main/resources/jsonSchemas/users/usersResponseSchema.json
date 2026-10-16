@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Users collection response",
+  "type": "object",
+  "required": ["users", "total", "skip", "limit"],
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id", "firstName", "lastName", "maidenName", "age", "gender",
+          "email", "phone", "username", "birthDate", "image", "role"
+        ],
+        "properties": {
+          "id": {"type": "integer", "minimum": 1},
+          "firstName": {"type": "string", "minLength": 1},
+          "lastName": {"type": "string", "minLength": 1},
+          "maidenName": {"type": "string"},
+          "age": {"type": "integer", "minimum": 0},
+          "gender": {"type": "string", "minLength": 1},
+          "email": {"type": "string", "minLength": 3},
+          "phone": {"type": "string", "minLength": 1},
+          "username": {"type": "string", "minLength": 1},
+          "birthDate": {"type": "string", "minLength": 1},
+          "image": {"type": "string", "minLength": 1},
+          "role": {"type": "string", "enum": ["admin", "moderator", "user"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "total": {"type": "integer", "minimum": 0},
+    "skip": {"type": "integer", "minimum": 0},
+    "limit": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": false
+}
